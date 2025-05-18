@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CSS Annexe Demo - Image Transformations</title>
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f0f8ff;
+      color: #333;
+      padding: 20px;
+      text-align: center;
+    }
+
+    h1, h2 {
+      margin-bottom: 10px;
+      color: #005a9c;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    .media-example img {
+      width: 90%;
+      max-width: 400px;
+      filter: grayscale(20%);
+      border: 4px solid #333;
+      margin: 20px 0;
+      transition: transform 0.5s ease, filter 0.5s ease;
+    }
+
+    .transform-controls {
+      margin-top: 10px;
+    }
+
+    .transform-controls button {
+      margin: 5px;
+      padding: 10px 16px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .transform-controls button:hover {
+      background-color: #0056b3;
+    }
+
+    #css-output {
+      margin-top: 20px;
+      background-color: #fff3cd;
+      color: #856404;
+      border: 1px solid #ffeeba;
+      padding: 10px;
+      border-radius: 4px;
+      font-family: monospace;
+      display: inline-block;
+      max-width: 90%;
+      word-wrap: break-word;
+    }
+
+    /* Note style */
+    .note {
+      color: #ff0000;
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Image Transformations with CSS</h1>
+
+  <section>
+    <h2>Click a button to apply a CSS transform or filter effect</h2>
+    <p class="note">Click on the button twice to remove the effect.</p>
+    <div class="media-example">
+      <img id="transform-img" src="https://i.pinimg.com/736x/35/46/9f/35469f66c376e31eaf34a392228b3b32.jpg" alt="Transformable Image" />
+      <div class="transform-controls">
+        <button onclick="transformImage('rotate')">Rotate</button>
+        <button onclick="transformImage('scale')">Scale</button>
+        <button onclick="transformImage('skew')">Skew</button>
+        <button onclick="transformImage('translate')">Translate</button>
+        <button onclick="transformImage('blur')">Blur</button>
+        <button onclick="transformImage('grayscale')">Grayscale</button>
+        <button onclick="transformImage('invert')">Invert</button>
+       
+      </div>
+      <div id="css-output">Click a button to see the CSS code here</div>
+    </div>
+  </section>
+
+  <script>
+    const states = {};
+
+    function transformImage(action) {
+      const img = document.getElementById('transform-img');
+      const cssOutput = document.getElementById('css-output');
+
+      // Toggle logic — if same action is active, reset
+      if (states[action]) {
+        img.style.transform = 'none';
+        img.style.filter = 'none';
+        cssOutput.textContent = 'transform: none;\nfilter: none;';
+        states[action] = false;
+        return;
+      }
+
+      // Clear all other states
+      for (const key in states) states[key] = false;
+      states[action] = true;
+
+      let transform = 'none';
+      let filter = 'none';
+      let cssText = '';
+
+      switch (action) {
+        case 'rotate':
+          transform = 'rotate(25deg)';
+          cssText = 'transform: rotate(25deg);';
+          break;
+        case 'scale':
+          transform = 'scale(1.4)';
+          cssText = 'transform: scale(1.4);';
+          break;
+        case 'skew':
+          transform = 'skew(15deg, 5deg)';
+          cssText = 'transform: skew(15deg, 5deg);';
+          break;
+        case 'translate':
+          transform = 'translateX(80px)';
+          cssText = 'transform: translateX(80px);';
+          break;
+        case 'blur':
+          filter = 'blur(5px)';
+          cssText = 'filter: blur(5px);';
+          break;
+        case 'grayscale':
+          filter = 'grayscale(100%)';
+          cssText = 'filter: grayscale(100%);';
+          break;
+        case 'invert':
+          filter = 'invert(100%)';
+          cssText = 'filter: invert(100%);';
+          break;
+        case 'reset':
+          transform = 'none';
+          filter = 'none';
+          cssText = 'transform: none;\nfilter: none;';
+          break;
+      }
+
+      img.style.transform = transform;
+      img.style.filter = filter;
+      cssOutput.textContent = cssText;
+    }
+  </script>
+   <footer style="margin-top: 40px; font-size: 14px; color: #777;">
+  &copy; Taha BAC INFO 2k25
+</footer>
+        
+</body>
+</html>
