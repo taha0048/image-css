@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CSS Annexe Demo - Image Transformations</title>
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -30,14 +29,15 @@
       margin-bottom: 40px;
     }
 
-  .media-example img {
-    width: 70%;
-    max-width: 400px;
-    filter: grayscale(20%);
-    border: 4px solid #333;
-    margin: 20px 0;
-    transition: transform 0.5s ease, filter 0.5s ease;
-  }
+    .media-example img {
+      width: 60%;
+      height: auto;
+      max-width: 320px;
+      filter: grayscale(20%);
+      border: 4px solid #333;
+      margin: 20px 0;
+      transition: transform 0.5s ease, filter 0.5s ease;
+    }
 
     .transform-controls {
       margin-top: 10px;
@@ -72,7 +72,6 @@
       word-wrap: break-word;
     }
 
-    /* Note style */
     .note {
       color: #ff0000;
       font-style: italic;
@@ -96,7 +95,6 @@
         <button onclick="transformImage('blur')">Blur</button>
         <button onclick="transformImage('grayscale')">Grayscale</button>
         <button onclick="transformImage('invert')">Invert</button>
-       
       </div>
       <div id="css-output">Click a button to see the CSS code here</div>
     </div>
@@ -109,7 +107,6 @@
       const img = document.getElementById('transform-img');
       const cssOutput = document.getElementById('css-output');
 
-      // Toggle logic — if same action is active, reset
       if (states[action]) {
         img.style.transform = 'none';
         img.style.filter = 'none';
@@ -118,7 +115,6 @@
         return;
       }
 
-      // Clear all other states
       for (const key in states) states[key] = false;
       states[action] = true;
 
@@ -167,9 +163,9 @@
       cssOutput.textContent = cssText;
     }
   </script>
-   <footer style="margin-top: 40px; font-size: 14px; color: #777;">
-  &copy; Taha BAC INFO 2k25
-</footer>
-        
+
+  <footer style="margin-top: 40px; font-size: 14px; color: #777;">
+    &copy; Taha BAC INFO 2k25
+  </footer>
 </body>
 </html>
